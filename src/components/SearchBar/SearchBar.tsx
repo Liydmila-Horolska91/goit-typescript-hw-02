@@ -1,14 +1,19 @@
-import { Formik, Form, Field } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import s from "./SearchBar.module.css";
+import { FormEvent, useRef } from "react";
 
-export default function SearchBar({ onSubmit }) {
-  const initialValues = {
-    query: "",
-  };
+interface SearchBarProps {
+  onSubmit: (searchTerm: string) => void;
+}
 
-  const handleSubmit = (values) => {
-    if (!values.query) {
+export default function SearchBar({ onSubmit }: SearchBarProps) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const searchTerm = inputRef.current?.value.trim();
+
+    if (!searchTerm) {
       toast.error("Tell me what do you want to search!", {
         style: {
           backgroundColor: "#ace1af",
@@ -17,29 +22,28 @@ export default function SearchBar({ onSubmit }) {
         duration: 3000,
         position: "top-right",
       });
+      inputRef.current?.focus();
+      return;
     }
 
-    onSubmit(values.query);
-    values.query = "";
+    onSubmit(searchTerm);
   };
 
   return (
     <header className={s.header}>
       <Toaster />
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form className={s.searchForm}>
-          <Field
-            name="query"
-            type="text"
-            className={s.inputField}
-            autoComplete="off"
-            placeholder="Search images..."
-          />
-          <button type="submit" className={s.searchBtn}>
-            Search
-          </button>
-        </Form>
-      </Formik>
+      <form onSubmit={handleSubmit} className={s.searchForm}>
+        <input
+          type="text"
+          className={s.inputField}
+          autoComplete="off"
+          ref={inputRef}
+          placeholder="Search images..."
+        />
+        <button type="submit" className={s.searchBtn}>
+          Search
+        </button>
+      </form>
     </header>
   );
 }

@@ -1,13 +1,18 @@
-
+import { Image, OnImageClick } from "../../types";
 import s from "./ImageCard.module.css";
 
-export default function ImageCard({ photo, modalContent }) {
+export interface ImageCardProps {
+  image: Image;
+  onImageClick: OnImageClick;
+}
+
+export default function ImageCard({ image, onImageClick }: ImageCardProps) {
   return (
-    <div onClick={() => modalContent(photo.urls.regular)}>
+    <div onClick={() => onImageClick(image)}>
       <img
         className={s.card}
-        src={photo.urls.small}
-        alt={photo.alt_description}
+        src={image.urls.small}
+        alt={image.alt_description}
       />
     </div>
   );

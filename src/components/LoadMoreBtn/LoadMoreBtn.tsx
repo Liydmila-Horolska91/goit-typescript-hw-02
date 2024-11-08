@@ -1,16 +1,13 @@
-import React from "react";
 import s from "./LoadMoreBtn.module.css";
 
 interface LoadMoreBtnProps {
-  handleClick: () => void;
+  onClick: () => void;
 }
 
-const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ handleClick }) => {
+export default function LoadMoreBtn({ onClick }: LoadMoreBtnProps) {
   return (
-    <button className={s.loadBtn} onClick={handleClick}>
+    <button type="button" className={s.loadBtn} onClick={onClick}>
       Load more
     </button>
   );
-};
-
-export default LoadMoreBtn;
+}

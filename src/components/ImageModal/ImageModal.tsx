@@ -1,19 +1,31 @@
-import ReactModal from "react-modal";
+import Modal from "react-modal";
+import { Image } from "../../types";
 import s from "./ImageModal.module.css";
 
-ReactModal.setAppElement("#root");
+Modal.setAppElement("#root");
 
-export default function ImageModal({ openModal, closeModal, src, alt }) {
+interface ImageModalProps {
+  image: Image | null;
+  onClose: () => void;
+}
+
+export default function ImageModal({ image, onClose }: ImageModalProps) {
+  if (!image) return null;
+
   return (
-    <ReactModal
-      isOpen={openModal}
-      onRequestClose={closeModal}
+    <Modal
+      isOpen={!!image}
+      onRequestClose={onClose}
       className={s.modal}
       overlayClassName={s.overlay}
     >
       <div>
-        <img className={s.modalImg} src={src} alt={alt} />
+        <img
+          className={s.modalImg}
+          src={image.urls.regular}
+          alt={image.alt_description}
+        />
       </div>
-    </ReactModal>
+    </Modal>
   );
 }

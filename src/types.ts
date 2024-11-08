@@ -17,8 +17,3 @@ export interface FetchImagesResponse {
 }
 
 export type OnImageClick = (image: Image) => void;
-
-export interface Image {
-  id: string;
-  url: string;
-}
