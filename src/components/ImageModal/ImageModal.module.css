@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(27, 77, 62, 0.9);
+    background-color: rgba(25, 6, 72, 0.9);
 }
 
 .modal {
@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
     padding: 40px;
     border-radius: 12px;
-    background-color: #ace1af;
+    background-color: #4d94ff;
 }
 
 .modalImg {

@@ -6,8 +6,8 @@
     margin: 0 auto 40px;
     width: 200px;
     height: 45px;
-    background-color: #1b4d3e;
-    color: #ace1af;
+    background-color: #003d99;
+    color: #4d94ff;
     border: none;
     border-radius: 8px;
     font-size: 20px;
@@ -18,5 +18,5 @@
 }
 
 .loadBtn:hover {
-    background-color: rgb(27, 77, 62, 0.9);
+    background-color: rgba(25, 6, 72, 0.9);
 }
